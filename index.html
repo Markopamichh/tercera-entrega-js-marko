@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador NBA - Jugadores Leyendas</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="./js/script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>🏀 Simulador NBA - Leyendas del Basquet</h1>
+        <p class="subtitulo">Arma tu equipo con jugadores clásicos y enfrenta al rival</p>
+    </header>
+    <section class="seccion-bienvenida">
+        <div class="contenedor-registro">
+            <input type="text" id="nombre" class="input" placeholder="Ingresa tu nombre">
+            <button id="aceptar" class="button">Comenzar</button>
+        </div>
+        <p id="saludo" class="saludo"></p>
+    </section>
+    <main class="contenedor-principal">
+        <section class="seccion-equipo">
+            <h2> Equipo Rival</h2>
+            <button id="generarRival" class="button button-generar">Ver Equipo Rival</button>
+            <div id="equipoRival" class="contenedor-cards"></div>
+        </section>
+        <section class="seccion-equipo">
+            <h2> Mi Equipo</h2>
+            <div class="formulario-jugador">
+                <input type="text" id="nombreJugador" class="input input-form" placeholder="Nombre del jugador" maxlength="30">
+                <input type="number" id="edadJugador" class="input input-form" placeholder="Edad" min="18" max="50">
+                <select id="selectorEquipos" class="selector selector-form">
+                    <option value="">Selecciona un equipo NBA</option>
+                    <option value="Chicago Bulls">Chicago Bulls</option>
+                    <option value="Los Angeles Lakers">Los Angeles Lakers</option>
+                    <option value="Boston Celtics">Boston Celtics</option>
+                    <option value="San Antonio Spurs">San Antonio Spurs</option>
+                    <option value="Miami Heat">Miami Heat</option>
+                    <option value="Houston Rockets">Houston Rockets</option>
+                    <option value="Phoenix Suns">Phoenix Suns</option>
+                    <option value="Utah Jazz">Utah Jazz</option>
+                    <option value="Detroit Pistons">Detroit Pistons</option>
+                    <option value="Dallas Mavericks">Dallas Mavericks</option>
+                    <option value="Philadelphia 76ers">Philadelphia 76ers</option>
+                </select>
+                <button id="agregarJugador" class="button button-form">Agregar a Mi Equipo</button>
+            </div>
+            <p id="alertaEquipo" class="alerta"></p>
+            <div id="miEquipo" class="contenedor-cards"></div>
+        </section>
+    </main>
+    <section class="seccion-partido">
+        <div id="contenedorPartido"></div>
+        <div id="resultadoPartido" class="resultado-partido"></div>
+    </section>
+    <footer>
+        <p>Proyecto JavaScript 3ra entrega - Simulador NBA 🏀</p>
+    </footer>
+</body>
+
+</html>

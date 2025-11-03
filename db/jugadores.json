@@ -1,0 +1,128 @@
+[
+    {
+        "id": 1,
+        "nombre": "Michael Jordan",
+        "posicion": "Escolta",
+        "equipo": "Chicago Bulls",
+        "anioGloria": "1991-1998"
+    },
+    {
+        "id": 2,
+        "nombre": "Magic Johnson",
+        "posicion": "Base",
+        "equipo": "Los Angeles Lakers",
+        "anioGloria": "1980-1991"
+    },
+    {
+        "id": 3,
+        "nombre": "Larry Bird",
+        "posicion": "Alero",
+        "equipo": "Boston Celtics",
+        "anioGloria": "1981-1986"
+    },
+    {
+        "id": 4,
+        "nombre": "Kareem Abdul-Jabbar",
+        "posicion": "Pívot",
+        "equipo": "Los Angeles Lakers",
+        "anioGloria": "1971-1989"
+    },
+    {
+        "id": 5,
+        "nombre": "Kobe Bryant",
+        "posicion": "Escolta",
+        "equipo": "Los Angeles Lakers",
+        "anioGloria": "2000-2010"
+    },
+    {
+        "id": 6,
+        "nombre": "Shaquille O'Neal",
+        "posicion": "Pívot",
+        "equipo": "Los Angeles Lakers",
+        "anioGloria": "2000-2002"
+    },
+    {
+        "id": 7,
+        "nombre": "Tim Duncan",
+        "posicion": "Ala-Pívot",
+        "equipo": "San Antonio Spurs",
+        "anioGloria": "1999-2007"
+    },
+    {
+        "id": 8,
+        "nombre": "LeBron James",
+        "posicion": "Alero",
+        "equipo": "Miami Heat",
+        "anioGloria": "2012-2013"
+    },
+    {
+        "id": 9,
+        "nombre": "Hakeem Olajuwon",
+        "posicion": "Pívot",
+        "equipo": "Houston Rockets",
+        "anioGloria": "1994-1995"
+    },
+    {
+        "id": 10,
+        "nombre": "Scottie Pippen",
+        "posicion": "Alero",
+        "equipo": "Chicago Bulls",
+        "anioGloria": "1991-1998"
+    },
+    {
+        "id": 11,
+        "nombre": "Charles Barkley",
+        "posicion": "Ala-Pívot",
+        "equipo": "Phoenix Suns",
+        "anioGloria": "1993"
+    },
+    {
+        "id": 12,
+        "nombre": "Karl Malone",
+        "posicion": "Ala-Pívot",
+        "equipo": "Utah Jazz",
+        "anioGloria": "1997-1998"
+    },
+    {
+        "id": 13,
+        "nombre": "John Stockton",
+        "posicion": "Base",
+        "equipo": "Utah Jazz",
+        "anioGloria": "1997-1998"
+    },
+    {
+        "id": 14,
+        "nombre": "Isiah Thomas",
+        "posicion": "Base",
+        "equipo": "Detroit Pistons",
+        "anioGloria": "1989-1990"
+    },
+    {
+        "id": 15,
+        "nombre": "Dirk Nowitzki",
+        "posicion": "Ala-Pívot",
+        "equipo": "Dallas Mavericks",
+        "anioGloria": "2011"
+    },
+    {
+        "id": 16,
+        "nombre": "Julius Erving",
+        "posicion": "Alero",
+        "equipo": "Philadelphia 76ers",
+        "anioGloria": "1983"
+    },
+    {
+        "id": 17,
+        "nombre": "Allen Iverson",
+        "posicion": "Base",
+        "equipo": "Philadelphia 76ers",
+        "anioGloria": "2001"
+    },
+    {
+        "id": 18,
+        "nombre": "Dwyane Wade",
+        "posicion": "Escolta",
+        "equipo": "Miami Heat",
+        "anioGloria": "2006"
+    }
+]
