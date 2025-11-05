@@ -5,6 +5,19 @@ let equipoRival = []
 let miEquipo = JSON.parse(localStorage.getItem("miEquipo")) || []
 
 
+function contarElementos(array) {
+    let contador = 0
+    for (let i = 0; array[i] !== undefined; i++) {
+        contador++
+    }
+    return contador
+}
+
+
+function mostrarAlerta(mensaje, elementoAlerta) {
+    elementoAlerta.innerHTML = mensaje
+    elementoAlerta.style.color = "#ffd700"
+}
 
 function importarJugadores() {
     fetch(URL)
@@ -21,47 +34,14 @@ function importarJugadores() {
         })
 }
 
-
-
-function mostrarSaludo() {
-    let inputNombre = document.getElementById("nombre")
-    let nombre = inputNombre.value.trim()  
-    let saludo = document.getElementById("saludo")
-    saludo.innerHTML = ""
-    
-    if (nombre === "") {
-        Swal.fire({
-            title: "Por favor ingresa tu Nombre",
-            icon: "warning",
-            draggable: true
-        })
-    } else {
-        
-        Swal.fire({
-            title: "¡Bienvenido/a " + nombre + "!",
-            text: "Prepárate para armar tu equipo de leyendas",
-            icon: "success",
-            draggable: true
-        })
-        saludo.innerHTML = "¡Bienvenido/a " + nombre + "!"
-    }
-    
-    localStorage.setItem("nombreUsuario", nombre)
-}
-
-
-
-
-
 function generarEquipoRival() {
-    
+
     equipoRival = []
-    
+
     let jugadoresDisponibles = [...listaJugadores]
-    
+
     for (let i = 0; i < 5; i++) {
-        
-        let indiceAleatorio = Math.floor(Math.random() * jugadoresDisponibles.length)
+        let indiceAleatorio = Math.floor(Math.random() * contarElementos(jugadoresDisponibles))
         equipoRival.push(jugadoresDisponibles[indiceAleatorio])
         jugadoresDisponibles.splice(indiceAleatorio, 1)
     }
@@ -72,7 +52,6 @@ function generarEquipoRival() {
 function mostrarEquipoRival() {
     let contenedor = document.getElementById("equipoRival")
     contenedor.innerHTML = ""
-
     equipoRival.forEach(jugador => {
         let card = document.createElement("div")
         card.className = "card"
@@ -98,21 +77,18 @@ function agregarJugadorAMiEquipo() {
     let equipo = selectorEquipo.value
     // Validaciones
     if (nombre === "") {
-        alerta.innerHTML = "Por favor ingresa el nombre del jugador"
-        alerta.style.color = "#ffd700"
+        mostrarAlerta("Por favor ingresa el nombre del jugador", alerta)
         return
     }
     if (!edad || edad < 18 || edad > 50) {
-        alerta.innerHTML = "Por favor ingresa una edad válida (18-50 años)"
-        alerta.style.color = "#ffd700"
+        mostrarAlerta("Por favor ingresa una edad válida (18-50 años)", alerta)
         return
     }
     if (equipo === "") {
-        alerta.innerHTML = "Por favor selecciona un equipo NBA"
-        alerta.style.color = "#ffd700"
+        mostrarAlerta("Por favor selecciona un equipo NBA", alerta)
         return
     }
-    if (miEquipo.length >= 5) {
+    if (contarElementos(miEquipo) >= 5) {
         Swal.fire({
             title: "Equipo completo",
             text: "Ya tienes 5 jugadores. Debes eliminar uno antes de agregar otro.",
@@ -121,9 +97,9 @@ function agregarJugadorAMiEquipo() {
         })
         return
     }
-    // Crear jugador personalizado
+
     let nuevoJugador = {
-        id: Date.now(), // Timestamp único como ID
+        id: Date.now(),
         nombre: nombre,
         edad: edad,
         equipo: equipo
@@ -131,7 +107,7 @@ function agregarJugadorAMiEquipo() {
     miEquipo.push(nuevoJugador)
     localStorage.setItem("miEquipo", JSON.stringify(miEquipo))
     mostrarMiEquipo()
-    // Limpiar formulario
+
     inputNombre.value = ""
     inputEdad.value = ""
     selectorEquipo.value = ""
@@ -143,7 +119,7 @@ function agregarJugadorAMiEquipo() {
 function mostrarMiEquipo() {
     let contenedor = document.getElementById("miEquipo")
     contenedor.innerHTML = ""
-    if (miEquipo.length === 0) {
+    if (contarElementos(miEquipo) === 0) {
         contenedor.innerHTML = "<p class='alertmsj'>Aún no has agregado jugadores a tu equipo</p>"
         return
     }
@@ -181,6 +157,7 @@ function eliminarJugador(jugadorId) {
     mostrarMiEquipo()
     verificarPartido()
 }
+
 function editarJugador(jugadorId) {
     let jugadorActual = miEquipo.find(jugador => jugador.id === jugadorId)
     let opcionesEquiposHTML = `
@@ -249,92 +226,4 @@ function editarJugador(jugadorId) {
             })
         }
     })
-}
-
-
-function verificarPartido() {
-    let contenedorPartido = document.getElementById("contenedorPartido")
-    if (miEquipo.length === 5 && equipoRival.length === 5) {
-        contenedorPartido.innerHTML = `
-            <button id="comenzarPartido" class="button" style="font-size: 1.3rem; padding: 15px 40px;">
-                🏀 Comenzar Partido
-            </button>
-        `
-        document.getElementById("comenzarPartido").addEventListener("click", jugarPartido)
-    } else {
-        contenedorPartido.innerHTML = ""
-        document.getElementById("resultadoPartido").innerHTML = ""
-    }
-}
-
-function jugarPartido() {
-    let resultadoAleatorio = Math.floor(Math.random() * 2)
-    
-    Swal.fire({
-        title: '🏀 Jugando el partido... 🏀',
-        text: 'Los equipos están en la cancha',
-        icon: 'info',
-        showConfirmButton: false,
-        timer: 2000,
-        timerProgressBar: true,
-        allowOutsideClick: false
-    }).then(() => {
-        
-        if (resultadoAleatorio === 0) {
-            
-            Swal.fire({
-                title: '🏆 ¡TU EQUIPO GANÓ! 🏆',
-                text: '¡Felicitaciones, tus leyendas dominaron la cancha!',
-                icon: 'success',
-                confirmButtonText: 'Jugar Otro Partido',
-                confirmButtonColor: '#28a745',
-                allowOutsideClick: false
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    reiniciarPartido()
-                }
-            })
-        } else {
-            
-            Swal.fire({
-                title: '😞 GANÓ EL EQUIPO RIVAL 😞',
-                text: '¡No te rindas! Inténtalo de nuevo.',
-                icon: 'error',
-                confirmButtonText: 'Jugar Otro Partido',
-                confirmButtonColor: '#ff6600',
-                allowOutsideClick: false
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    reiniciarPartido()
-                }
-            })
-        }
-        
-        document.getElementById("contenedorPartido").innerHTML = ""
-    })
-}
-
-function reiniciarPartido() {
-    document.getElementById("resultadoPartido").innerHTML = ""
-    verificarPartido()
-}
-
-
-importarJugadores()
-
-let botonAceptar = document.getElementById("aceptar")
-botonAceptar.addEventListener("click", mostrarSaludo)
-
-let botonGenerarRival = document.getElementById("generarRival")
-botonGenerarRival.addEventListener("click", generarEquipoRival)
-
-let botonAgregarJugador = document.getElementById("agregarJugador")
-botonAgregarJugador.addEventListener("click", agregarJugadorAMiEquipo)
-
-let nombreGuardado = localStorage.getItem("nombreUsuario")
-if (nombreGuardado && nombreGuardado !== "") {
-    let saludo = document.getElementById("saludo")
-    let inputNombre = document.getElementById("nombre")
-    saludo.innerHTML = "¡Bienvenido/a " + nombreGuardado + "!"
-    inputNombre.value = nombreGuardado
 }
